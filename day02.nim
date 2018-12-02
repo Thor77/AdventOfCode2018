@@ -1,6 +1,7 @@
 from utils import nil
 import tables
 import sequtils
+import strutils
 
 proc part1(lines: seq[string]): int =
     var twoTotal = 0
@@ -22,6 +23,19 @@ proc part1(lines: seq[string]): int =
             threeTotal += 1
     return twoTotal * threeTotal
 
+proc part2(lines: seq[string]): string =
+    for target in lines:
+        for line in lines:
+            if target == line:
+                continue
+            var common: seq[char] = @[]
+            for idx, alpha in line.pairs:
+                if alpha == target[idx]:
+                    common.add(alpha)
+            if common.len == (line.len - 1):
+                return common.join("")
+
 when isMainModule:
     var lines = utils.readInputLines("02")
     echo part1(lines)
+    echo part2(lines)
