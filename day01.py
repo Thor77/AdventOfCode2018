@@ -6,7 +6,7 @@ def part1(changes):
 
 
 def part2(changes):
-    frequencies = {0: None}
+    frequencies = set()
     result = 0
     while True:
         for change in changes:
@@ -14,7 +14,7 @@ def part2(changes):
             if result in frequencies:
                 return result
             else:
-                frequencies[result] = None
+                frequencies.add(result)
 
 
 if __name__ == '__main__':
